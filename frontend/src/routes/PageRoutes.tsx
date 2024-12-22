@@ -1,7 +1,6 @@
 import React, { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 
-// Lazy-loaded components
 const LandingPage = React.lazy(() => import("../pages/LandingPage"));
 const SignPage = React.lazy(() => import("../pages/SignPage"));
 const OrderCheckoutPage = React.lazy(

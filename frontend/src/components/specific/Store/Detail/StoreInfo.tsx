@@ -16,6 +16,7 @@ const StoreInfo = () => {
   const { id } = useParams();
   const info = useGetStoreDetail(Number(id));
 
+  //Skeleton UI
   const SkeletonUI = () => {
     return (
       <Box className="grid grid-cols-2 h-[400px] gap-x-20 mb-16">

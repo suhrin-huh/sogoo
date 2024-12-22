@@ -6,6 +6,7 @@ import { Skeleton } from "@mui/material";
 const SubscribeList = () => {
   const { id } = useParams();
   const subscribes = useGetStoreSubscribe(Number(id));
+
   const PackageSkeleton = () => {
     return (
       <div className="space-y-4 my-5 w-full">
