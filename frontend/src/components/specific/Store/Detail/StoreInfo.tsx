@@ -2,6 +2,8 @@ import MenuSelect from "./MenuSelect";
 import { useGetStoreDetail } from "../../../../queries/queries";
 import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import Skeleton from "@mui/material/Skeleton";
+import Box from "@mui/material/Box";
 
 interface StoreInfo {
   storeId: number;
@@ -13,8 +15,31 @@ interface StoreInfo {
 const StoreInfo = () => {
   const { id } = useParams();
   const info = useGetStoreDetail(Number(id));
+
+  const SkeletonUI = () => {
+    return (
+      <Box className="grid grid-cols-2 h-[400px] gap-x-20 mb-16">
+        <Skeleton variant="rectangular" height={400} width={400} />
+        <Box className="flex flex-col gap-y-3">
+          <Skeleton variant="text" width="50%" height={40} />
+          <Skeleton variant="text" width="80%" />
+          <Skeleton variant="text" width="60%" />
+          <Box className="flex items-center">
+            <Skeleton variant="text" width="20%" height={40} sx={{ py: 3 }} />
+            <Skeleton
+              variant="rectangular"
+              width="60%"
+              height={40}
+              sx={{ ml: 2 }}
+            />
+          </Box>
+        </Box>
+      </Box>
+    );
+  };
+
   if (!info) {
-    return <div className="grid grid-cols-2 h-[500px] gap-x-6"></div>;
+    return <SkeletonUI />;
   }
 
   const HelmetContent = () => {
@@ -35,7 +60,7 @@ const StoreInfo = () => {
   };
 
   return (
-    <div className="grid grid-cols-2 h-[500px] gap-x-20 mb-16">
+    <div className="grid grid-cols-2 h-[400px] gap-x-20 mb-16">
       <HelmetContent />
       <img
         src={info.img}
